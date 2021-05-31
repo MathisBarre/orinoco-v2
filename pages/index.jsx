@@ -1,11 +1,12 @@
-import Head from 'next/head'
+import Seo from '../components/Seo'
 
 export default function Home () {
   return (
     <>
-      <Head>
-        <title>Accueil - Orinoco</title>
-      </Head>
+      <Seo
+        title="Accueil - Orinoco, votre e-commerce ! Un projet OpenClassrooms"
+        description="Le site e-commerce pour vos oursons en peluche ! Un projet OpenClassrooms réalisé par Mathis Barré"
+      />
       <h1>Orinoco</h1>
     </>
   )
