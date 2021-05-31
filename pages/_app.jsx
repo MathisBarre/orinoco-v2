@@ -18,7 +18,7 @@ function MyApp ({ Component, pageProps }) {
           <nav className="flex">
             <ul className="list-none font-semibold">
               <li>
-                <a className="px-4 py-4" href="./cart.html">Panier</a>
+                <Link href="/cart" ><a className="px-4 py-4">Panier</a></Link>
               </li>
             </ul>
           </nav>

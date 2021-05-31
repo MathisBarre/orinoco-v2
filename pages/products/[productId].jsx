@@ -1,14 +1,21 @@
+import { useRouter } from 'next/router'
 import Seo from '../../components/Seo'
 import getProduct from '../../services/getProduct'
 import getProducts from '../../services/getProducts'
+import Cart from '../../utils/Cart.utils'
 
 export default function ProductPage ({ product }) {
+  const router = useRouter()
+
+  function redirectToShoppingCart () {
+    router.push('/cart')
+  }
+
   return (
     <>
       <Seo
         title={`Ourson ${product.name} - Orinoco, votre e-commerce ! Un projet OpenClassrooms`}
       />
-      { console.log(product) }
       <section className="flex flex-col items-stretch lg:flex-row mt-4 rounded-md w-full p-4 bg-oniPink">
         <div className="w-full lg:w-1/2 md:min-w-1/2 h-full mr-4">
           <img id="productImage" className="rounded object-cover" src={product.imageUrl} alt="" />
@@ -44,6 +51,10 @@ export default function ProductPage ({ product }) {
           </div>
           <button
             className="w-full bg-pink-600 text-white text-center font-bold text-lg rounded mt-4 py-2 mb transition duration-150 transform hover:scale-102"
+            onClick={() => {
+              Cart.addProduct(product)
+              redirectToShoppingCart()
+            }}
           >
             Ajouter au panier pour <span id="productPrice">{product.price / 100}.00€</span>
           </button>

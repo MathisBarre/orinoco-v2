@@ -23,6 +23,7 @@ module.exports = {
 
     // Personnal preferences
     'react/prop-types': 'off',
-    'multiline-ternary': 'off'
+    'multiline-ternary': 'off',
+    'no-unused-vars': 'warn'
   }
 }
