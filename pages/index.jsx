@@ -13,7 +13,6 @@ export default function Home ({ products }) {
         { products
           ? (
             <>
-            { console.log(products) }
             { products.map((product, index) => (
               <section key={`product-${index}`}>
                 <li className="list-none bg-oniPink rounded-md p-4 transition duration-200 transform hover:scale-102">
