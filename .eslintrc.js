@@ -22,6 +22,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
 
     // Personnal preferences
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'multiline-ternary': 'off'
   }
 }
