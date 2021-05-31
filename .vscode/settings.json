@@ -9,5 +9,9 @@
     ".vscode": true,
     ".next": true
   },
-  "explorerExclude.backup": null
+  "explorerExclude.backup": null,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"],
 }
