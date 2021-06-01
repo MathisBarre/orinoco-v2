@@ -23,7 +23,8 @@ export default function CheckoutForm () {
       headers: { 'Content-Type': 'application/json; charset=utf-8' }
     }
 
-    fetch('https://oc-devweb-p5-api.herokuapp.com/api/teddies/order', requestOptions)
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+    fetch(`${apiUrl}/api/teddies/order`, requestOptions)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
