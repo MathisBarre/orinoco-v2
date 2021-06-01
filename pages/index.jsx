@@ -10,13 +10,13 @@ export default function Home ({ products }) {
         description="Le site e-commerce pour vos oursons en peluche ! Un projet OpenClassrooms réalisé par Mathis Barré"
         imageUrl="https://orinoco-v2.mathisbarre.com/images/orinoco.png"
       />
-      <ul id="productsList" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
+      <ul id="productsList" className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2 xl:grid-cols-3">
         { products
           ? (
             <>
             { products.map((product, index) => (
               <section key={`product-${index}`}>
-                <li className="list-none bg-oniPink rounded-md p-4 transition duration-200 transform hover:scale-102">
+                <li className="p-4 list-none transition duration-200 transform rounded-md bg-oniPink hover:scale-102">
                   <Link
                     href={{
                       pathname: '/products/[productId]',
@@ -25,7 +25,7 @@ export default function Home ({ products }) {
                   >
                     <a>
                       <figure>
-                        <img className="rounded h-64 w-full object-cover" src={ product.imageUrl } alt="" />
+                        <img className="object-cover w-full h-64 rounded" src={ product.imageUrl.replace('http', 'https') } alt="" />
                         <figcaption className="pt-4">
                           <div className="flex items-center mb-2">
                             <h2 className="font-bold ">{ product.name }</h2>
@@ -37,9 +37,9 @@ export default function Home ({ products }) {
                               <img className="h-5" src="./images/star.svg" alt="" />
                               <img className="h-5" src="./images/star.svg" alt="" />
                             </div>
-                            <span className="text-sm font-bold bg-white px-2 py-1 rounded">{ product.price / 100 }.00€</span>
+                            <span className="px-2 py-1 text-sm font-bold bg-white rounded">{ product.price / 100 }.00€</span>
                           </div>
-                          <p className="text-black text-opacity-80 text-sm text-justify">{ product.description }</p>
+                          <p className="text-sm text-justify text-black text-opacity-80">{ product.description }</p>
                         </figcaption>
                       </figure>
                     </a>
@@ -51,12 +51,12 @@ export default function Home ({ products }) {
             )
           : (
             <>
-              <div className="bg-oniPink animate-pulse h-80 rounded-md" />
-              <div className="bg-oniPink animate-pulse h-80 rounded-md" />
-              <div className="bg-oniPink animate-pulse h-80 rounded-md" />
-              <div className="bg-oniPink animate-pulse h-80 rounded-md" />
-              <div className="bg-oniPink animate-pulse h-80 rounded-md" />
-              <div className="bg-oniPink animate-pulse h-80 rounded-md" />
+              <div className="rounded-md bg-oniPink animate-pulse h-80" />
+              <div className="rounded-md bg-oniPink animate-pulse h-80" />
+              <div className="rounded-md bg-oniPink animate-pulse h-80" />
+              <div className="rounded-md bg-oniPink animate-pulse h-80" />
+              <div className="rounded-md bg-oniPink animate-pulse h-80" />
+              <div className="rounded-md bg-oniPink animate-pulse h-80" />
             </>
             )
           }
