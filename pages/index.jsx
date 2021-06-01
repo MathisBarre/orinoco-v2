@@ -8,6 +8,7 @@ export default function Home ({ products }) {
       <Seo
         title="Accueil - Orinoco, votre e-commerce ! Un projet OpenClassrooms"
         description="Le site e-commerce pour vos oursons en peluche ! Un projet OpenClassrooms réalisé par Mathis Barré"
+        imageUrl="https://orinoco-v2.mathisbarre.com/images/orinoco.png"
       />
       <ul id="productsList" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
         { products
