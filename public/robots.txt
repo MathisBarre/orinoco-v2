@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://orinoco-v2.mathisbarre.com/robots.txt
