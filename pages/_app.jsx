@@ -10,7 +10,8 @@ function MyApp ({ Component, pageProps }) {
       <Head><link rel="icon" href="/favicon.ico" /></Head>
       <Seo
         title="Orinoco, votre e-commerce ! Un projet OpenClassrooms"
-        description="Le site e-commerce pour vos oursons en peluche ! Un projet OpenClassrooms réalisé par Mathis Barré"
+        description="Le site e-commerce pour vos oursons en peluche ! Projet 5 du parcours développeur web chez OpenClassrooms réalisé par Mathis Barré"
+        imageUrl="https://orinoco-v2.mathisbarre.com/images/orinoco.png"
       />
       <div className="container mx-auto px-4 py-8">
         <header className="flex justify-between items-center rounded-lg w-full bg-oniPink py-2 px-6">
