@@ -23,7 +23,7 @@ export default function Home ({ products }) {
                   >
                     <a>
                       <figure>
-                        <img className="object-cover w-full h-64 rounded" src={ product.imageUrl.replace('http', 'https') } alt="" />
+                        <img className="object-cover w-full h-64 rounded" src={(process.env.NODE_ENV === 'production') ? product.imageUrl.replace('http', 'https') : product.imageUrl } alt="" />
                         <figcaption className="pt-4">
                           <div className="flex items-center mb-2">
                             <h2 className="font-bold ">{ product.name }</h2>
