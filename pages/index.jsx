@@ -29,7 +29,7 @@ export default function Home ({ products }) {
   )
 }
 
-function Product (product) {
+function Product ({ product }) {
   return (
     <section>
       <div className="p-4 list-none transition duration-200 transform rounded-md bg-oniPink hover:scale-102">

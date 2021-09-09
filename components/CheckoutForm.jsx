@@ -7,7 +7,6 @@ export default function CheckoutForm () {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   function proceedPayment (data) {
-    console.log(data)
     const products = Object.values(Cart.products).map((product) => {
       return product._id
     })
@@ -27,7 +26,6 @@ export default function CheckoutForm () {
     fetch(`${apiUrl}/api/teddies/order`, requestOptions)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json)
         localStorage.removeItem('shoppingCart')
         router.push(`/orderStatus?orderId=${json.orderId}`)
       })
