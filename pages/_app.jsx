@@ -11,7 +11,8 @@ function MyApp ({ Component, pageProps }) {
   useEffect(() => {
     splitbee.init({
       scriptUrl: '/bee.js',
-      apiUrl: '/_hive'
+      apiUrl: '/_hive',
+      token: 'PRBWDOI08IWS'
     })
   }, [])
 
