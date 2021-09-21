@@ -26,7 +26,7 @@ export default function DevsCoffeeBanner () {
           <span className="cursor-default">{' '}-{' '}</span>
           <a target="_blank" className="hover:underline" href="https://ohmyfood.mathisbarre.com" rel="noreferrer">OhMyFood</a>
           <span className="cursor-default">{' '}-{' '}</span>
-          <a target="_blank" className="hover:underline" href="https://orinoco-v2.mathisbarre.com" rel="noreferrer">Orinoco</a>
+          <a target="_blank" className="hover:underline" href="https://github.com/MathisBarre/MathisBarre_7_01082021_front-end" rel="noreferrer">Groupomania</a>
         </nav>
       </div>
     </section>
