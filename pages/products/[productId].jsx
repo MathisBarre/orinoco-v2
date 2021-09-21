@@ -1,11 +1,14 @@
+import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import Seo from '../../components/Seo'
 import getProduct from '../../services/getProduct'
 import getProducts from '../../services/getProducts'
-import Cart from '../../utils/Cart.utils'
+import { addProduct } from '../../utils/cart.utils'
+import { BasketContext } from '../../components/BasketContext'
 
 export default function ProductPage ({ product }) {
   const router = useRouter()
+  const { basket, setBasket } = useContext(BasketContext)
 
   function redirectToShoppingCart () {
     router.push('/cart')
@@ -16,12 +19,12 @@ export default function ProductPage ({ product }) {
       <Seo
         title={`Ourson ${product.name} - Orinoco, votre e-commerce ! Un projet OpenClassrooms`}
       />
-      <section className="flex flex-col items-stretch lg:flex-row mt-4 rounded-md w-full p-4 bg-oniPink">
-        <div className="w-full lg:w-1/2 md:min-w-1/2 h-full mr-4">
-          <img id="productImage" className="rounded object-cover" src={product.imageUrl} alt="" />
+      <section className="flex flex-col items-stretch w-full p-4 mt-4 rounded-md lg:flex-row bg-oniPink">
+        <div className="w-full h-full mr-4 lg:w-1/2 md:min-w-1/2">
+          <img id="productImage" className="object-cover rounded" src={product.imageUrl} alt="" />
         </div>
         <div className="flex flex-col flex-wrap items-start w-full">
-          <h1 className="w-full text-xl text-center font-bold mb-8 mt-8 lg:mt-4">Ours en peluche &quot;<span id="productName">{product.name}</span>&quot;</h1>
+          <h1 className="w-full mt-8 mb-8 text-xl font-bold text-center lg:mt-4">Ours en peluche &quot;<span id="productName">{product.name}</span>&quot;</h1>
           <div className="flex items-center">
             <img className="h-5" src="/images/star.svg" alt="" />
             <img className="h-5" src="/images/star.svg" alt="" />
@@ -32,10 +35,10 @@ export default function ProductPage ({ product }) {
               <span className="underline cursor-pointer">56 avis</span> - <span className="underline cursor-pointer">12 produits en stock</span>
             </p>
           </div>
-          <p id="productDescription" className="text-black text-opacity-80 text-justify mt-4">{product.description}</p>
+          <p id="productDescription" className="mt-4 text-justify text-black text-opacity-80">{product.description}</p>
           <div className="flex-grow" />
-          <h2 className="text-bold font-lg font-bold mt-4">Choisir la couleur de votre produit : </h2>
-          <div id="productColors" className="grid gap-4 mt-4 w-full" style={{ gridTemplateColumns: `repeat(${product.colors.length}, 1fr)` }}>
+          <h2 className="mt-4 font-bold text-bold font-lg">Choisir la couleur de votre produit : </h2>
+          <div id="productColors" className="grid w-full gap-4 mt-4" style={{ gridTemplateColumns: `repeat(${product.colors.length}, 1fr)` }}>
             { product.colors.map((color) => {
               if (color === 'Pale brown') color = 'beige'
               if (color === 'Dark brown') color = 'tan'
@@ -43,16 +46,16 @@ export default function ProductPage ({ product }) {
               return (
                 <div
                   key={`color-${color}`}
-                  className="h-12 sm:h-20 cursor-pointer flex-grow rounded transition duration-150 transform hover:scale-105"
+                  className="flex-grow h-12 transition duration-150 transform rounded cursor-pointer sm:h-20 hover:scale-105"
                   style={{ backgroundColor: color }}
                 />
               )
             })}
           </div>
           <button
-            className="w-full bg-pink-600 text-white text-center font-bold text-lg rounded mt-4 py-2 mb transition duration-150 transform hover:scale-102"
+            className="w-full py-2 mt-4 text-lg font-bold text-center text-white transition duration-150 transform bg-pink-600 rounded mb hover:scale-102"
             onClick={() => {
-              Cart.addProduct(product)
+              setBasket(addProduct(basket, product))
               redirectToShoppingCart()
             }}
           >

@@ -1,31 +1,9 @@
-import { useEffect, useState } from 'react'
-import Cart from '../utils/Cart.utils'
+import { useContext } from 'react'
+import { updateProductQuantity, getTotalPrice } from '../utils/cart.utils'
+import { BasketContext } from './BasketContext'
 
 export default function ProductList () {
-  const [productsInCart, setProductsInCart] = useState({})
-
-  useEffect(() => {
-    setProductsInCart(Cart.products)
-  }, [])
-
-  useEffect(() => {
-    Cart.products = productsInCart
-  }, [productsInCart])
-
-  function updateProductQuantity (e, productToUpdateId) {
-    const newQuantity = e.target.value
-    const newProductsInCart = productsInCart.map((product) => {
-      if (product._id === productToUpdateId) { product.quantity = newQuantity }
-      return product
-    })
-    setProductsInCart(newProductsInCart)
-  }
-
-  function getTotalPrice () {
-    return Object.values(productsInCart).reduce((acc, curr) => {
-      return acc + (curr.quantity * curr.price)
-    }, 0)
-  }
+  const { basket, setBasket } = useContext(BasketContext)
 
   return (
     <section className="p-4 mt-4 rounded-md bg-oniPink">
@@ -40,7 +18,7 @@ export default function ProductList () {
           </tr>
         </thead>
         <tbody id="productsList">
-          { Object.values(productsInCart).map((productInCart, index) => (
+          { Object.values(basket).map((productInCart, index) => (
             <tr key={`productInCart-${index}`} className="bg-white border rounded">
               <td className="p-0 py-2 text-center">{ productInCart.name }</td>
               <td className="p-0 text-center">
@@ -49,7 +27,9 @@ export default function ProductList () {
                     className="z-10 block w-full py-1 pl-3 pr-10 text-base text-center border border-indigo-200 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     name="quantity"
                     value={productInCart.quantity}
-                    onChange={(e) => { updateProductQuantity(e, productInCart._id) }}
+                    onChange={(e) => {
+                      setBasket(updateProductQuantity(basket, e.target.value, productInCart._id))
+                    }}
                   >
                     { [...Array(12)].map((empty, index) => {
                       return <option key={`product-${productInCart._id}-choice-${index}`} value={index + 1}>{ index + 1 }</option>
@@ -63,7 +43,7 @@ export default function ProductList () {
           ))}
           <tr className="bg-gray-100">
             <td colSpan={3} className="py-2 text-center">Total</td>
-            <td className="text-center">{getTotalPrice() / 100}.00€</td>
+            <td className="text-center">{getTotalPrice(basket) / 100}.00€</td>
           </tr>
         </tbody>
       </table>

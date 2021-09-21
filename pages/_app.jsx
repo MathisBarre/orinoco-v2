@@ -6,6 +6,7 @@ import splitbee from '@splitbee/web'
 import Seo from '../components/Seo'
 import DevsCoffeeBanner from '../components/DevsCoffeeBanner'
 import Header from '../components/Header'
+import BasketWrapper from '../components/BasketContext'
 
 function MyApp ({ Component, pageProps }) {
   useEffect(() => {
@@ -27,7 +28,9 @@ function MyApp ({ Component, pageProps }) {
       <DevsCoffeeBanner />
       <div className="container px-4 py-8 mx-auto">
         <Header/>
-        <Component {...pageProps} />
+        <BasketWrapper>
+          <Component {...pageProps} />
+        </BasketWrapper>
       </div>
     </>
   )

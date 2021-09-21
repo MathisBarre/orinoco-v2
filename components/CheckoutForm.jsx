@@ -1,13 +1,15 @@
+import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
-import Cart from '../utils/Cart.utils'
+import { BasketContext } from './BasketContext'
 
 export default function CheckoutForm () {
   const router = useRouter()
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit } = useForm()
+  const { basket } = useContext(BasketContext)
 
   function proceedPayment (data) {
-    const products = Object.values(Cart.products).map((product) => {
+    const products = Object.values(basket).map((product) => {
       return product._id
     })
 

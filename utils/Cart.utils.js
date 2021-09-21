@@ -1,31 +1,30 @@
-class CartObject {
-  get products () {
-    return JSON.parse(localStorage.getItem('shoppingCart') || '[]')
+export function addProduct (products, newProduct) {
+  const productAlreadyInCart = products.find((product) => product._id === newProduct._id) !== undefined
+
+  if (productAlreadyInCart) {
+  // Increase quantity
+    products = products.map((product) => {
+      if (product._id === newProduct._id) product.quantity++
+      return product
+    })
+  } else {
+  // Add product
+    newProduct.quantity = 1
+    products.push(newProduct)
   }
 
-  set products (products) {
-    localStorage.setItem('shoppingCart', JSON.stringify(products))
-  }
-
-  addProduct (productObject) {
-    let products = this.products
-
-    const productAlreadyInCart = products.find((product) => product._id === productObject._id) !== undefined
-
-    if (productAlreadyInCart) {
-      // Increase quantity
-      products = products.map((product) => {
-        if (product._id === productObject._id) product.quantity++
-        return product
-      })
-    } else {
-      // Add product
-      productObject.quantity = 1
-      products.push(productObject)
-    }
-
-    this.products = products
-  }
+  return products
 }
 
-export default new CartObject()
+export function updateProductQuantity (products, newQuantity, productToUpdateId) {
+  return products.map((product) => {
+    if (product._id === productToUpdateId) { product.quantity = newQuantity }
+    return product
+  })
+}
+
+export function getTotalPrice (products) {
+  return Object.values(products).reduce((acc, curr) => {
+    return acc + (curr.quantity * curr.price)
+  }, 0)
+}
